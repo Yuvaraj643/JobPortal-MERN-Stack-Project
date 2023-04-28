@@ -1,0 +1,13 @@
+.container ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+ul li{
+    justify-content: space-evenly;
+    display: flex;
+    padding: 10px;
+    text-decoration: none25
+}
