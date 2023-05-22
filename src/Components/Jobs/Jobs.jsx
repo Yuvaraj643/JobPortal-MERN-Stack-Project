@@ -55,7 +55,7 @@ function Jobs() {
             There are {jobs.length} jobs Available
           </h2>
           <div className="container">
-            <div className="row row-cols-1 row-cols-md-2 g-1">
+            <div className="row row-cols-1 row-cols-md-2 g-4">
               {jobs.map((job) => (
                 <div className="col" key={job._id}>
                   <div className="card text-dark bg-light mb-3">

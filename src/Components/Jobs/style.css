@@ -1,3 +1,6 @@
-.row{
+
+
+.card{
     margin: 0 auto;
+    max-width: 25rem;
 }
