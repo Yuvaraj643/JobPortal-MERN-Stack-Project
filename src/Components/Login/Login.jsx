@@ -25,9 +25,10 @@ const Login = () => {
         navigate("/get-jobs");
       } else if (response.data.error) {
         toast.error(response.data.error);
+        console.log(error)
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       setError(err.response.data.message);
     }
   };

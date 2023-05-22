@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +13,6 @@ const EditJob = () => {
   const [workType, setWorkType] = useState("");
   const [shift, setShift] = useState("");
   const [description, setDescription] = useState("");
-  const [navigate, setNavigate] = useState(false);
 
   useEffect(() => {
     getJob();
@@ -63,7 +62,6 @@ const EditJob = () => {
       ); 
       console.log(updatedJob.data);
       toast.success(updatedJob.data.message);
-      setNavigate(true);
     } catch (err) {
       console.error(err.message);
     }

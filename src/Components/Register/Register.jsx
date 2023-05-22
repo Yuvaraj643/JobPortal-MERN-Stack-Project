@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loader from "../../Loader/Loader";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

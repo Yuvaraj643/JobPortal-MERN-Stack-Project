@@ -19,7 +19,7 @@ function Jobs() {
           const createdTime = new Date(job.createdAt).getTime();
           const diff = now - createdTime;
           const daysAgo = Math.floor(diff / 86400000);
-          const key = job._id;
+          // const key = job._id;
           return { ...job, daysAgo };
         });
         setJobs(jobsWithDaysAgo);
