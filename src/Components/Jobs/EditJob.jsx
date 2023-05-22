@@ -60,7 +60,7 @@ const EditJob = () => {
       const updatedJob = await axios.patch(
         `https://yuvaraj-job-portal.onrender.com/api/update-job/${id}`,
         body
-      ); // Replace with your backend API endpoint
+      ); 
       console.log(updatedJob.data);
       toast.success(updatedJob.data.message);
       setNavigate(true);
