@@ -27,6 +27,13 @@ const Login = () => {
         toast.error(response.data.error);
         console.log(error)
       }
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        navigate("/get-jobs");
+      } else if (response.data.error) {
+        toast.error(response.data.error);
+        console.log(error);
+      }
     } catch (error) {
       console.error(error);
       setError(error.response.data.message);

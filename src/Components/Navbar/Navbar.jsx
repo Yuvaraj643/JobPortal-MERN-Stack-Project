@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./style.css";
-import { Link } from "react-router-dom";
-
+import { Link,useLocation } from "react-router-dom";
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const user = JSON.parse(atob(token.split('.')[1]));
+        setUser(user);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
+
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container">
+        <Link className="navbar-brand" to="/">
           Job Portal
-        </a>
+        </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -18,37 +40,52 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/get-jobs">
+            <li className="nav-item">
+              <Link className="nav-link" to="/get-jobs">
                 View Jobs
-              </a>
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/create-jobs">
+            <li className="nav-item">
+              <Link className="nav-link" to="/create-jobs">
                 Upload Job
-              </a>
+              </Link>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <Link to="/Login"><button class="btn btn-primary" >
-                Login
-              </button></Link>
-            </li>
-            <li class="nav-item">
-            <Link to="/register"><button class="btn btn-danger" >
-                Register
-              </button></Link>
-            </li>
+          <ul className="navbar-nav ml-auto">
+            {user ? (
+              <>
+                <li className="nav-item">
+                  <span className="nav-link">Welcome, {user.name}</span>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-danger" onClick={handleLogout}>
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link to="/login">
+                    <button className="btn btn-primary">Login</button>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/register">
+                    <button className="btn btn-danger">Register</button>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
