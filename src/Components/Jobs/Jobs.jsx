@@ -26,7 +26,7 @@ function Jobs() {
         setLoading(false);
         console.log(jobs);
       });
-  }, []);
+  });
 
   const handleDeleteJob = (id) => {
     fetch(`https://yuvaraj-job-portal.onrender.com/api/delete-job/${id}`, {

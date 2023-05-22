@@ -16,7 +16,7 @@ const EditJob = () => {
 
   useEffect(() => {
     getJob();
-  }, []);
+  });
 
   const getJob = async () => {
     try {
