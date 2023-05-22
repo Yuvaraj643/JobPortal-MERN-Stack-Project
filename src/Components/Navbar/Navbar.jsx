@@ -45,9 +45,9 @@ const Navbar = () => {
               </button></Link>
             </li>
             <li class="nav-item">
-              <button class="btn btn-danger" >
+            <Link to="/register"><button class="btn btn-danger" >
                 Register
-              </button>
+              </button></Link>
             </li>
           </ul>
         </div>
