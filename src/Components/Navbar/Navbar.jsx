@@ -9,7 +9,7 @@ const Navbar = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const user = JSON.parse(atob(token.split('.')[1]));
+        const user ='Yuvaraj'
         setUser(user);
       } catch (error) {
         console.error('Error decoding token:', error);
@@ -64,7 +64,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <li className="nav-item">
-                  <span className="nav-link">Welcome, {user.name}</span>
+                  <span className="nav-link">Welcome, {user}</span>
                 </li>
                 <li className="nav-item">
                   <button className="btn btn-danger" onClick={handleLogout}>

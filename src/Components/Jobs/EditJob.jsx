@@ -13,6 +13,7 @@ const EditJob = () => {
   const [workType, setWorkType] = useState("");
   const [shift, setShift] = useState("");
   const [description, setDescription] = useState("");
+  const [originalData, setOriginalData] = useState({});
 
   useEffect(() => {
     getJob();
@@ -39,6 +40,15 @@ const EditJob = () => {
       setWorkType(workType);
       setShift(shift);
       setDescription(description);
+      setOriginalData({
+        company,
+        position,
+        workLocation,
+        salary,
+        workType,
+        shift,
+        description,
+      });
     } catch (err) {
       console.error(err.message);
     }
@@ -59,12 +69,32 @@ const EditJob = () => {
       const updatedJob = await axios.patch(
         `https://yuvaraj-job-portal.onrender.com/api/update-job/${id}`,
         body
-      ); 
+      );
       console.log(updatedJob.data);
       toast.success(updatedJob.data.message);
     } catch (err) {
       console.error(err.message);
     }
+  };
+
+  const resetForm = () => {
+    // Reset the state values to their original values
+    const {
+      company,
+      position,
+      workLocation,
+      salary,
+      workType,
+      shift,
+      description,
+    } = originalData;
+    setCompany(company);
+    setPosition(position);
+    setWorkLocation(workLocation);
+    setSalary(salary);
+    setWorkType(workType);
+    setShift(shift);
+    setDescription(description);
   };
 
   return (
@@ -169,9 +199,17 @@ const EditJob = () => {
             />
           </div>
         </div>
+
         <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary mr-2">
             Save Changes
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={resetForm}
+          >
+            Cancel
           </button>
         </div>
       </form>
